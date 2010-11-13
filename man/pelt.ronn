@@ -1,0 +1,38 @@
+pelt(1) -- SKINNING STYLE
+=======================================
+
+## SYNOPSIS
+
+`pelt` COMMAND [--no-color] [--verbose] [ARGS]
+
+## DESCRIPTION
+
+Pelt manages an `application's dependencies` through its entire life
+across many machines systematically and repeatably.
+
+See [the pelt website](http://github.com/nyc-ruby-meetup/pelt) for information on getting
+started, 
+
+## OPTIONS
+
+* `--no-color`:
+  Prints all output without color
+
+* `--verbose`:
+  Prints out additional logging information
+
+## BUNDLE COMMANDS
+
+We divide `pelt` subcommands into primary commands and utilities.
+
+## PRIMARY COMMANDS
+
+* [pelt install(1)][pelt-install]:
+  Install the skin specified
+
+## UTILITIES
+
+* `pelt check(1)`:
+  Determine whether the requirements for your application are installed
+  and available to pelt
+

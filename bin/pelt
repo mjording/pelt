@@ -1,4 +1,15 @@
 #!/usr/bin/env ruby
 
 $LOAD_PATH.unshift File.expand_path("../lib", File.dirname(__FILE__))
+
 require "pelt"
+require 'pelt/cli'
+
+begin
+  Pelt::CLI.start
+rescue Exception => e
+  exit e.status_code
+rescue Interrupt
+  Pelt.ui.error "\nQuitting..."
+  exit 1
+end

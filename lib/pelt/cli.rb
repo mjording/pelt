@@ -24,15 +24,11 @@ module Pelt
       case cli
       when "sass" then command = "compile"
       when nil    then command = "pelt"
-      else  command = pelt-#{cli}
+      else  command = "pelt-#{cli}"
       end
       
       manpages = %w(
         pelt
-        pelt-config
-        pelt-convert
-        pelt-install
-        pelt-update
         )
       if manpages.include?(command)
         root = File.expand_path("../man", __FILE__)

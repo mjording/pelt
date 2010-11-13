@@ -1,8 +1,10 @@
 require 'rubygems'
 require 'rake'
 
+
 begin
   require 'jeweler'
+  require 'ronn'
   Jeweler::Tasks.new do |gem|
     gem.name = "pelt"
     gem.summary = %Q{A SASS/SCSS jQuery UI Port for Theme Management and Extensibility}
@@ -16,11 +18,6 @@ begin
     gem.add_dependency 'sass'
     gem.add_dependency 'thor'
     gem.files = Dir.glob('lib/**/*.rb')
-    # Man files are required because they are ignored by git
-    man_files            = Dir.glob("lib/bundler/man/**/*")
-      
-    gem.files              = `git ls-files`.split("\n") + man_files
-    # gem.test_files         = `git ls-files -- {test,spec,features}/*`.split("\n")
     gem.executables        = %w(pelt)
     gem.default_executable = "pelt"
     gem.require_paths      = ["lib"]
@@ -30,6 +27,8 @@ begin
     puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
   end
 
+  
+  
   require 'spec/rake/spectask'
   Spec::Rake::SpecTask.new(:spec) do |spec|
     spec.libs << 'lib' << 'spec'
@@ -78,4 +77,30 @@ begin
     task :yardoc do
       abort "YARD is not available. In order to run yardoc, you must: sudo gem install yard"
     end
+end
+namespace :man do
+  directory "lib/pelt/man"
+
+  Dir["man/*.ronn"].each do |ronn|
+    basename = File.basename(ronn, ".ronn")
+    roff = "lib/pelt/man/#{basename}"
+
+    file roff => ["lib/pelt/man", ronn] do
+      sh "ronn --roff --pipe #{ronn} > #{roff}"
+    end
+
+    file "#{roff}.txt" => roff do
+      sh "groff -Wall -mtty-char -mandoc -Tascii #{roff} | col -b > #{roff}.txt"
+    end
+
+    task :build_all_pages => "#{roff}.txt"
+  end
+
+  desc "Build the man pages"
+  task :build => "man:build_all_pages"
+
+  desc "Clean up from the built man pages"
+  task :clean do
+    rm_rf "lib/pelt/man"
+  end
 end

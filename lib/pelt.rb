@@ -13,7 +13,7 @@ module Pelt
     NULL    = WINDOWS ? "NUL" : "/dev/null"
     
     class << self
-      attr_writer :ui, :bundle_path
+      attr_writer :ui
      
       
       def mkdir_p(path)

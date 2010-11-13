@@ -18,26 +18,7 @@ Gem::Specification.new do |s|
     "README"
   ]
   s.files = [
-    ".gitignore",
-     "README",
-     "Rakefile",
-     "bin/pelt",
-     "lib/jquery-ui/jquery-ui.scss",
-     "lib/jquery-ui/partials/_jquery-ui-accordion.scss",
-     "lib/jquery-ui/partials/_jquery-ui-all.scss",
-     "lib/jquery-ui/partials/_jquery-ui-autocomplete.scss",
-     "lib/jquery-ui/partials/_jquery-ui-base.scss",
-     "lib/jquery-ui/partials/_jquery-ui-button.scss",
-     "lib/jquery-ui/partials/_jquery-ui-core.scss",
-     "lib/jquery-ui/partials/_jquery-ui-datepicker.scss",
-     "lib/jquery-ui/partials/_jquery-ui-dialog.scss",
-     "lib/jquery-ui/partials/_jquery-ui-progressbar.scss",
-     "lib/jquery-ui/partials/_jquery-ui-resizable.scss",
-     "lib/jquery-ui/partials/_jquery-ui-selectable.scss",
-     "lib/jquery-ui/partials/_jquery-ui-slider.scss",
-     "lib/jquery-ui/partials/_jquery-ui-tabs.scss",
-     "lib/jquery-ui/partials/_jquery-ui-theme.scss",
-     "lib/pelt.rb",
+    "lib/pelt.rb",
      "lib/pelt/app_integration.rb",
      "lib/pelt/app_integration/rails.rb",
      "lib/pelt/cli.rb",
@@ -51,12 +32,7 @@ Gem::Specification.new do |s|
      "lib/pelt/sass_extentions.rb",
      "lib/pelt/settings.rb",
      "lib/pelt/ui.rb",
-     "lib/pelt/version.rb",
-     "pelt.gemspec",
-     "spec/pelt_spec.rb",
-     "spec/spec.opts",
-     "spec/spec_helper.rb",
-     "version.yml"
+     "lib/pelt/version.rb"
   ]
   s.homepage = %q{http://github.com/nyc-ruby-meetup/pelt}
   s.rdoc_options = ["--charset=UTF-8"]
