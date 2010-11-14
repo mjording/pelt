@@ -3,7 +3,7 @@ module Pelt
   module AppIntegration
     module Helpers
       def lookup(project_type)
-        eval "Compass::AppIntegration::#{camelize(project_type)}"
+        eval "Pelt::AppIntegration::#{camelize(project_type)}"
       rescue NameError
         raise Compass::Error, "No application integration exists for #{project_type}"
       end

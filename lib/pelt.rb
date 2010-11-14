@@ -1,19 +1,21 @@
 require 'rbconfig'
 require 'pathname'
 
+
 module Pelt
     ORIGINAL_ENV = ENV.to_hash
     
-    autoload :UI,                  'pelt/ui'
-    autoload :Settings,            'pelt/settings'
-    
+    autoload :UI,         'pelt/ui'
+    autoload :Settings,   'pelt/settings'
+    autoload :Installers, 'pelt/installers'
+    autoload :Frameworks, 'pelt/frameworks'
     
     WINDOWS = RbConfig::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
     FREEBSD = RbConfig::CONFIG["host_os"] =~ /bsd/
     NULL    = WINDOWS ? "NUL" : "/dev/null"
     
     class << self
-      attr_writer :ui
+      attr_writer :ui, :base_directory
      
       
       def mkdir_p(path)
@@ -36,9 +38,17 @@ module Pelt
       end
 
       def root
-        root  = File.expand_path(Dir.pwd)
+        default_pelt
       end
-
+      
+      
+      def default_pelt
+        base_directory
+      end
+      
+      def base_directory
+        File.expand_path(File.join(File.dirname(__FILE__), '..'))
+      end
 
       def pelted_path
         # STDERR.puts settings.path
@@ -47,8 +57,8 @@ module Pelt
       
       def app_config_path
         ENV['PELT_APP_CONFIG'] ?
-          Pathname.new(ENV['PELT_APP_CONFIG']).expand_path(root) :
-          root.join('.pelt')
+          Pathname.new(ENV['PELT_APP_CONFIG']).expand_path(root) : root
+          # root.join('.pelt')
       end
       
       def settings

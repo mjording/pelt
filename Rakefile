@@ -4,7 +4,6 @@ require 'rake'
 
 begin
   require 'jeweler'
-  require 'ronn'
   Jeweler::Tasks.new do |gem|
     gem.name = "pelt"
     gem.summary = %Q{A SASS/SCSS jQuery UI Port for Theme Management and Extensibility}
@@ -13,94 +12,68 @@ begin
     gem.homepage = "http://github.com/nyc-ruby-meetup/pelt"
     gem.authors = ["russ bradberry", "matthew jording"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_development_dependency "ronn"
     gem.add_development_dependency "yard", ">= 0"
     gem.add_dependency 'sass'
     gem.add_dependency 'thor'
     gem.files = Dir.glob('lib/**/*.rb')
     gem.executables        = %w(pelt)
     gem.default_executable = "pelt"
-    gem.require_paths      = ["lib"]
+    gem.require_paths      = ["lib", "frameworks"]
   end
   Jeweler::GemcutterTasks.new
-  rescue LoadError
-    puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-  end
 
-  
-  
-  require 'spec/rake/spectask'
-  Spec::Rake::SpecTask.new(:spec) do |spec|
-    spec.libs << 'lib' << 'spec'
-    spec.spec_files = FileList['spec/**/*_spec.rb']
-  end
-
-  Spec::Rake::SpecTask.new(:rcov) do |spec|
-    spec.libs << 'lib' << 'spec'
-    spec.pattern = 'spec/**/*_spec.rb'
-    spec.rcov = true
-  end
-
-  task :spec => :check_dependencies
-
-  begin
-    require 'reek/adapters/rake_task'
-    Reek::RakeTask.new do |t|
-      t.fail_on_error = true
-      t.verbose = false
-      t.source_files = 'lib/**/*.rb'
-    end
-  rescue LoadError
-    task :reek do
-      abort "Reek is not available. In order to run reek, you must: sudo gem install reek"
-    end
-  end
-
-  begin
-    require 'roodi'
-    require 'roodi_task'
-    RoodiTask.new do |t|
-      t.verbose = false
-    end
-  rescue LoadError
-    task :roodi do
-      abort "Roodi is not available. In order to run roodi, you must: sudo gem install roodi"
-    end
-  end
-
-  task :default => :spec
-
-  begin
-    require 'yard'
-    YARD::Rake::YardocTask.new
-  rescue LoadError
-    task :yardoc do
-      abort "YARD is not available. In order to run yardoc, you must: sudo gem install yard"
-    end
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
-namespace :man do
-  directory "lib/pelt/man"
+  
+  
+require 'spec/rake/spectask'
+Spec::Rake::SpecTask.new(:spec) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.spec_files = FileList['spec/**/*_spec.rb']
+end
 
-  Dir["man/*.ronn"].each do |ronn|
-    basename = File.basename(ronn, ".ronn")
-    roff = "lib/pelt/man/#{basename}"
+Spec::Rake::SpecTask.new(:rcov) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.pattern = 'spec/**/*_spec.rb'
+  spec.rcov = true
+end
+task :spec => :check_dependencies
 
-    file roff => ["lib/pelt/man", ronn] do
-      sh "ronn --roff --pipe #{ronn} > #{roff}"
-    end
 
-    file "#{roff}.txt" => roff do
-      sh "groff -Wall -mtty-char -mandoc -Tascii #{roff} | col -b > #{roff}.txt"
-    end
-
-    task :build_all_pages => "#{roff}.txt"
+begin
+  require 'reek/adapters/rake_task'
+  Reek::RakeTask.new do |t|
+    t.fail_on_error = true
+    t.verbose = false
+    t.source_files = 'lib/**/*.rb'
   end
+rescue LoadError
+  task :reek do
+    abort "Reek is not available. In order to run reek, you must: sudo gem install reek"
+  end
+end
 
-  desc "Build the man pages"
-  task :build => "man:build_all_pages"
+begin
+  require 'roodi'
+  require 'roodi_task'
+  RoodiTask.new do |t|
+    t.verbose = false
+  end
+rescue LoadError
+  task :roodi do
+    abort "Roodi is not available. In order to run roodi, you must: sudo gem install roodi"
+  end
+end
+task :default => :spec
 
-  desc "Clean up from the built man pages"
-  task :clean do
-    rm_rf "lib/pelt/man"
+
+
+begin
+  require 'yard'
+  YARD::Rake::YardocTask.new
+rescue LoadError
+  task :yardoc do
+    abort "YARD is not available. In order to run yardoc, you must: sudo gem install yard"
   end
 end

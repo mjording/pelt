@@ -1,9 +1,11 @@
+require 'fileutils'
+
 module Pelt
   class Settings
     
     
-    def initialize(root)
-      @root   = root
+    def initialize(path=nil)
+      @root   = path || root
       @config = File.exist?(config_file) ? YAML.load_file(config_file) : {}
     end
 
@@ -89,7 +91,7 @@ module Pelt
        end
 
        def config_file
-         Pathname.new("#{@root}/config")
+         Pathname.new("#{@root}/pelt.yml")
        end
   end
 end

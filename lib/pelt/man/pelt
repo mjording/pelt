@@ -1,0 +1,42 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "PELT" "1" "November 2010" "" ""
+.
+.SH "NAME"
+\fBpelt\fR \- SKINNING STYLE
+.
+.SH "SYNOPSIS"
+\fBpelt\fR COMMAND [\-\-no\-color] [\-\-verbose] [ARGS]
+.
+.SH "DESCRIPTION"
+Pelt manages an \fBapplication\'s dependencies\fR through its entire life across many machines systematically and repeatably\.
+.
+.P
+See the pelt website \fIhttp://github\.com/nyc\-ruby\-meetup/pelt\fR for information on getting started,
+.
+.SH "OPTIONS"
+.
+.TP
+\fB\-\-no\-color\fR
+Prints all output without color
+.
+.TP
+\fB\-\-verbose\fR
+Prints out additional logging information
+.
+.SH "BUNDLE COMMANDS"
+We divide \fBpelt\fR subcommands into primary commands and utilities\.
+.
+.SH "PRIMARY COMMANDS"
+.
+.TP
+[pelt install(1)][pelt\-install]
+Install the skin specified
+.
+.SH "UTILITIES"
+.
+.TP
+\fBpelt check(1)\fR
+Determine whether the requirements for your application are installed and available to pelt
+

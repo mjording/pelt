@@ -1,0 +1,40 @@
+PELT(1) 							       PELT(1)
+
+
+
+1mNAME0m
+       1mpelt 22m- SKINNING STYLE
+
+1mSYNOPSIS0m
+       1mpelt 22mCOMMAND [--no-color] [--verbose] [ARGS]
+
+1mDESCRIPTION0m
+       Pelt  manages  an  1mapplication's  dependencies  22mthrough its entire life
+       across many machines systematically and repeatably.
+
+       See the pelt website 4mhttp://github.com/nyc-ruby-meetup/pelt24m for  infor-
+       mation on getting started,
+
+1mOPTIONS0m
+       1m--no-color0m
+	      Prints all output without color
+
+       1m--verbose0m
+	      Prints out additional logging information
+
+1mBUNDLE COMMANDS0m
+       We divide 1mpelt 22msubcommands into primary commands and utilities.
+
+1mPRIMARY COMMANDS0m
+       [pelt install(1)][pelt-install]
+	      Install the skin specified
+
+1mUTILITIES0m
+       1mpelt check(1)0m
+	      Determine  whether  the  requirements  for  your application are
+	      installed and available to pelt
+
+
+
+
+				 November 2010			       PELT(1)
