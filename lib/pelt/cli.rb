@@ -41,9 +41,6 @@ module Pelt
          Pelt.ui.info "keep it then"
        else
          Pelt.ui.info "#{Pelt.frameworks.class} already exists at #{Dir.pwd}"
-
-        
-    
       end
     end
     def self.source_root

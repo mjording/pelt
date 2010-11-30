@@ -65,6 +65,9 @@ module Pelt
         @settings ||= Settings.new(app_config_path)
       end
       
+      def frameworks
+        @frameworks ||= Pelt::Frameworks
+      end
       private
 
         def configure_pelted_home_and_path

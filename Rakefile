@@ -7,7 +7,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "pelt"
     gem.summary = %Q{A SASS/SCSS jQuery UI Port for Theme Management and Extensibility}
-    gem.description = %Q{A SASS/SCSS jQuery UI Port for Theme Management and Extensibility}
+    gem.description = %Q{A SASS/SCSS jQuery UI Port for Theme Management and Extensibility now more descriptive}
     gem.email = "rbradberry@gmail.com"
     gem.homepage = "http://github.com/nyc-ruby-meetup/pelt"
     gem.authors = ["russ bradberry", "matthew jording"]
@@ -16,6 +16,7 @@ begin
     gem.add_dependency 'sass'
     gem.add_dependency 'thor'
     gem.files = Dir.glob('lib/**/*.rb')
+    gem.files = Dir.glob('frameworks/**/*')
     gem.executables        = %w(pelt)
     gem.default_executable = "pelt"
     gem.require_paths      = ["lib", "frameworks"]
